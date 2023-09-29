@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "myCMDB"
+authors = [
+    {name = "Luca Mariani", email = "lmar76@gmail.com"}
+]
+description = "My CMDB."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+dependencies = [
+    "SQLAlchemy"
+]
+dynamic = ["version"]
+
+[project.scripts]
+pyiers = "mycmdb.cli:main"
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov", "pytest-datadir", "pytest-dotenv"]
+
+[project.urls]
+repository = "https://github.com/lmar76/myCMDB"
+
+[tool.setuptools.dynamic]
+version = {attr = "mycmdb.__version__"}
+
+[tool.setuptools.package-data]
+eopfiles = ["py.typed"]
