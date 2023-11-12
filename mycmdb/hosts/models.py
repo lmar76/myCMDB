@@ -3,18 +3,15 @@ from typing import List, Optional
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import (
-    DeclarativeBase,
     Mapped,
     mapped_column,
     relationship
 )
 
-
-class Base(DeclarativeBase):
-    pass
+from mycmdb import db
 
 
-class Host(Base):
+class Host(db.Model):
     """Class for hosts."""
     __tablename__ = "hosts"
 
@@ -33,7 +30,7 @@ class Host(Base):
         return f"{self.__class__.__name__}(id={self.id}, name={self.name}, alias={self.alias})"
 
 
-class OS(Base):
+class OS(db.Model):
     """Class for OS."""
     __tablename__ = "os"
 
@@ -51,7 +48,7 @@ class OS(Base):
     )
 
 
-class Interface(Base):
+class Interface(db.Model):
     """Class for interfaces."""
     __tablename__ = "interfaces"
 

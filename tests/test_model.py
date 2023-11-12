@@ -1,9 +1,9 @@
 """Test the `mycmdb.model` mudule"""
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 import pytest
 
-from mycmdb import model
+from mycmdb.hosts import models
 
 
 class TestOS:
@@ -17,8 +17,8 @@ class TestOS:
         ]
     )
     def test_creation(self, parameters: Dict[str, Any]) -> None:
-        obj = model.OS(**parameters)
-        assert isinstance(obj, model.OS)
+        obj = models.OS(**parameters)
+        assert isinstance(obj, models.OS)
         assert isinstance(obj.hosts, list)
         assert obj.hosts == []
         assert repr(obj) == (
@@ -37,7 +37,7 @@ class TestHost:
                 "name": "pi2",
                 "alias": "pi2",
                 "os_id": 1,
-                "os": model.OS(id=1, name="Linux", distribution="Raspbian", version="11"),
+                "os": models.OS(id=1, name="Linux", distribution="Raspbian", version="11"),
                 "processor_cores": 4,
                 "ram": 1,
                 "disk_size": 5
@@ -46,7 +46,7 @@ class TestHost:
                 "id": 1,
                 "name": "a1gy05-03",
                 "alias": "pi2",
-                "os": model.OS(id=1, name="Linux", distribution="Raspbian", version="11"),
+                "os": models.OS(id=1, name="Linux", distribution="Raspbian", version="11"),
                 "processor_cores": 4,
                 "ram": 1,
                 "disk_size": 5
@@ -58,8 +58,8 @@ class TestHost:
         ]
     )
     def test_creation(self, parameters: Dict[str, Any]) -> None:
-        obj = model.Host(**parameters)
-        assert isinstance(obj, model.Host)
+        obj = models.Host(**parameters)
+        assert isinstance(obj, models.Host)
         assert repr(obj) == (
             f"Host(id={parameters.get('id')}, name={parameters.get('name')},"
             f" alias={parameters.get('alias')})"
@@ -79,11 +79,11 @@ class TestInterface:
                 "ipv4_mask": "255.255.255.0",
                 "ipv6_address": "2001:db8::8a2e:370:7334",
                 "host_id": 1,
-                "host": model.Host(id=1, name="7627dgh", alias="fdy")
+                "host": models.Host(id=1, name="7627dgh", alias="fdy")
             }
         ]
     )
     def test_creation(self, parameters: Dict[str, Any]) -> None:
-        obj = model.Interface(**parameters)
-        assert isinstance(obj, model.Interface)
+        obj = models.Interface(**parameters)
+        assert isinstance(obj, models.Interface)
         assert repr(obj) == f"Interface(name={parameters.get('name')})"
